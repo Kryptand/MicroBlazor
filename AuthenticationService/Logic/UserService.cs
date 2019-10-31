@@ -58,7 +58,7 @@ namespace AuthenticationService.Logic
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            }; 
+            };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var jwtSecurityToken = tokenHandler.WriteToken(token);
 
@@ -76,11 +76,11 @@ namespace AuthenticationService.Logic
                 Username = username,
                 Password = _passwordHasher.HashPassword(password)
             };
-            var addedUser= await _userContext.UserEntities.AddAsync(userEntity);
+            var addedUser = await _userContext.UserEntities.AddAsync(userEntity);
             await _userContext.SaveChangesAsync();
             return addedUser.Entity;
         }
 
-    
+
     }
 }

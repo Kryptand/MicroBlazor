@@ -2,8 +2,6 @@ using AuthenticationFrontend.Services;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.ClientsideStorage;
-using System.Collections.Generic;
-using TG.Blazor.IndexedDB;
 
 namespace AuthenticationFrontend
 {

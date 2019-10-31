@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Authentication.Models;
+﻿using Authentication.Models;
+using System.Threading.Tasks;
 
 namespace AuthenticationFrontend.Services
 {

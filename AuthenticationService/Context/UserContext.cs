@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AuthenticationService.DataClasses;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Shared.Data.DataClasses.Contracts;
 using System;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
-using AuthenticationService.DataClasses;
 
 namespace AuthenticationService.Data.Context
 {

@@ -2,10 +2,10 @@
 
 namespace Shared.Data.DataClasses.Contracts
 {
-    public abstract class BaseEntity<TId>:ITrackable
+    public abstract class BaseEntity<TId> : ITrackable
     {
         public TId Id { get; set; }
-        public DateTime CreatedOn { get ; set ; }
+        public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
         public string ModifiedBy { get; set; }

@@ -3,7 +3,7 @@ using Shared.Data.DataClasses.Contracts;
 
 namespace AuthenticationService.DataClasses
 {
-    public class UserEntity:GuidEntity
+    public class UserEntity : GuidEntity
     {
         public string FullName { get; set; }
         public string Username { get; set; }

@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Shared.ClientsideStorage.Logic
@@ -21,12 +20,12 @@ namespace Shared.ClientsideStorage.Logic
             if (string.IsNullOrEmpty(key))
                 throw new ArgumentNullException(nameof(key));
 
-            await _jsRuntime.InvokeAsync<object>("window.localStorage.setItem", new[] { key, JsonConvert.SerializeObject(data)});
+            await _jsRuntime.InvokeAsync<object>("window.localStorage.setItem", new[] { key, JsonConvert.SerializeObject(data) });
         }
 
         public async Task<T> GetSingleAsync<TInput, T>(string storeName, TInput key)
         {
-            var serialisedData = await _jsRuntime.InvokeAsync<string>("window.localStorage.getItem",key);
+            var serialisedData = await _jsRuntime.InvokeAsync<string>("window.localStorage.getItem", key);
 
             if (serialisedData == null)
                 return default(T);
@@ -39,7 +38,7 @@ namespace Shared.ClientsideStorage.Logic
             await _jsRuntime.InvokeAsync<string>("blazored.localStorage.removeItem", key);
         }
 
-        public async Task ClearAsync(string storeName) => await _jsRuntime.InvokeVoidAsync("window.localStorage.setItem",null);
+        public async Task ClearAsync(string storeName) => await _jsRuntime.InvokeVoidAsync("window.localStorage.setItem", null);
 
 
         public async Task UpdateAsync<T>(string storeName, T updateItem)
@@ -57,6 +56,6 @@ namespace Shared.ClientsideStorage.Logic
             throw new NotImplementedException();
         }
 
-    
+
     }
 }

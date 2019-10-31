@@ -1,11 +1,10 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Authentication.Models;
+﻿using Authentication.Models;
 using Microsoft.AspNetCore.Components;
 using Shared.ClientsideStorage.Logic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
-  namespace AuthenticationFrontend.Services
+namespace AuthenticationFrontend.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
@@ -33,20 +32,20 @@ using Shared.ClientsideStorage.Logic;
         }
         public async Task LogoutAsync()
         {
-            await _storageService.DeleteAsync(TABLE_STORAGE_IDENTIFIER,TOKEN_STORAGE_IDENTIFIER);
+            await _storageService.DeleteAsync(TABLE_STORAGE_IDENTIFIER, TOKEN_STORAGE_IDENTIFIER);
         }
         public async Task<string> GetTokenAsync()
         {
-            return await _storageService.GetSingleAsync<string,string>(TABLE_STORAGE_IDENTIFIER,TOKEN_STORAGE_IDENTIFIER);
+            return await _storageService.GetSingleAsync<string, string>(TABLE_STORAGE_IDENTIFIER, TOKEN_STORAGE_IDENTIFIER);
         }
 
         public async Task WriteTokenAsync(SecurityToken token)
-        { 
-            await _storageService.AddAsync<SecurityToken>(TABLE_STORAGE_IDENTIFIER,token);
+        {
+            await _storageService.AddAsync<SecurityToken>(TABLE_STORAGE_IDENTIFIER, token);
         }
         public async Task<bool> IsAuthenticatedAsync()
         {
-            var token = await _storageService.GetSingleAsync<string,string>(TABLE_STORAGE_IDENTIFIER,TOKEN_STORAGE_IDENTIFIER);
+            var token = await _storageService.GetSingleAsync<string, string>(TABLE_STORAGE_IDENTIFIER, TOKEN_STORAGE_IDENTIFIER);
             return (token != null);
         }
     }

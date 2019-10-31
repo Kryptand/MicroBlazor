@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using TG.Blazor.IndexedDB;
 
 namespace Shared.ClientsideStorage.Logic
 {
-    public class StorageService : IStorageService
+    public class IndexedDbStorageService : IStorageService
     {
         private readonly IndexedDBManager _dbManager;
-        public StorageService(IndexedDBManager
+        public IndexedDbStorageService(IndexedDBManager
              dBManager)
         {
             _dbManager = dBManager;
@@ -21,7 +19,7 @@ namespace Shared.ClientsideStorage.Logic
                 Storename = storeName,
                 Data = valueItem
             };
-      
+
             await _dbManager.AddRecord(newRecord);
         }
         public async Task<T> GetSingleAsync<TInput, T>(string storeName, TInput key)
@@ -50,9 +48,9 @@ namespace Shared.ClientsideStorage.Logic
         {
             await _dbManager.ClearStore(storeName);
         }
-        public async Task AddSchemaAsync(string storeName, IEnumerable<string> indexSpecs = null, string primaryKey = "id",bool autoIncrement=true)
+        public async Task AddSchemaAsync(string storeName, IEnumerable<string> indexSpecs = null, string primaryKey = "id", bool autoIncrement = true)
         {
-      
+
             var newStoreSchema = new StoreSchema
             {
                 Name = storeName,
