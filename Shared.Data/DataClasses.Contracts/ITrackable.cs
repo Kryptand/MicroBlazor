@@ -4,9 +4,9 @@ namespace Shared.Data.DataClasses.Contracts
 {
     public interface ITrackable
     {
-        public DateTime CreatedOn { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime ModifiedOn { get; set; }
-        public string ModifiedBy { get; set; }
+        DateTime CreatedOn { get; set; }
+        string CreatedBy { get; set; }
+        DateTime ModifiedOn { get; set; }
+        string ModifiedBy { get; set; }
     }
 }

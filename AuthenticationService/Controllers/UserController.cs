@@ -1,5 +1,5 @@
 ﻿using AuthenticationService.Logic.Contracts;
-using AuthenticationService.Models;
+using Authentication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

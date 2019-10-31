@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using Authentication.Models;
+using System.Security.Cryptography;
 
 namespace AuthenticationService.Logic.Contracts
 {

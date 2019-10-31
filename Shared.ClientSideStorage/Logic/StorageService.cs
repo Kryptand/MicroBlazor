@@ -1,62 +1,66 @@
-﻿using Microsoft.JSInterop;
-using Shared.ClientSideStorage.Logic.Contracts;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
+using TG.Blazor.IndexedDB;
 
-namespace Shared.ClientSideStorage.Logic
+namespace Shared.ClientsideStorage.Logic
 {
-    internal class StorageService : IAsyncDisposable, IStorageService
+    public class StorageService : IStorageService
     {
-        private readonly IJSRuntime _jsRuntime;
-        private readonly StorageConfig _storageConfig;
+        private readonly IndexedDBManager _dbManager;
+        public StorageService(IndexedDBManager
+             dBManager)
+        {
+            _dbManager = dBManager;
+        }
+        public async Task AddAsync<T>(string storeName, T valueItem)
+        {
+            var newRecord = new StoreRecord<T>
+            {
+                Storename = storeName,
+                Data = valueItem
+            };
+      
+            await _dbManager.AddRecord(newRecord);
+        }
+        public async Task<T> GetSingleAsync<TInput, T>(string storeName, TInput key)
+        {
+            return await _dbManager.GetRecordById<TInput, T>(storeName, key);
+        }
+        public async Task<IEnumerable<T>> ListAsync<T>(string storeName)
+        {
+            return await _dbManager.GetRecords<T>(storeName);
+        }
+        public async Task UpdateAsync<T>(string storeName, T updateItem)
+        {
+            var updateRecord = new StoreRecord<T>
+            {
+                Storename = storeName,
+                Data = updateItem
+            };
 
-        public StorageService(IJSRuntime jsRuntime, StorageConfig storageConfig)
+            await _dbManager.UpdateRecord(updateRecord);
+        }
+        public async Task DeleteAsync<TInput>(string storeName, TInput key)
         {
-            _jsRuntime = jsRuntime;
-            _storageConfig = storageConfig;
+            await _dbManager.DeleteRecord<TInput>(storeName, key);
+        }
+        public async Task ClearAsync(string storeName)
+        {
+            await _dbManager.ClearStore(storeName);
+        }
+        public async Task AddSchemaAsync(string storeName, IEnumerable<string> indexSpecs = null, string primaryKey = "id",bool autoIncrement=true)
+        {
+      
+            var newStoreSchema = new StoreSchema
+            {
+                Name = storeName,
+                PrimaryKey = new IndexSpec { Name = primaryKey, KeyPath = primaryKey, Auto = autoIncrement }
+            };
+
+            await _dbManager.AddNewStore(newStoreSchema);
         }
 
-        public async ValueTask RegisterStorage()
-        {
-            await _jsRuntime.InvokeVoidAsync("registerStorage", _storageConfig);
-        }
-        public async ValueTask DestroyStorage()
-        {
-            await _jsRuntime.InvokeVoidAsync("destroyStorage");
-        }
-        public async ValueTask StorageReady()
-        {
-            await _jsRuntime.InvokeVoidAsync("storageReady");
-        }
-        public async ValueTask ClearAsync()
-        {
-            await _jsRuntime.InvokeVoidAsync("clearStorage");
-        }
-
-        public async Task<T> GetItemAsync<T>(string key)
-        {
-            return await _jsRuntime.InvokeAsync<T>("getStorageValueByKey", key);
-        }
-        public async Task<T> KeysAsync<T>()
-        {
-            return await _jsRuntime.InvokeAsync<T>("storageKeys");
-        }
-        public async Task<int> LengthAsync()
-        {
-            return await _jsRuntime.InvokeAsync<int>("storageLength");
-        }
-        public async Task RemoveAsync(string key)
-        {
-            await _jsRuntime.InvokeVoidAsync("removeStorageValueByKey", key);
-        }
-        public async Task SetItemAsync(string key, object data)
-        {
-            await _jsRuntime.InvokeVoidAsync("setStorageValueByKey", new[] { key, data });
-        }
-
-        ValueTask IAsyncDisposable.DisposeAsync()
-        {
-            return DestroyStorage();
-        }
     }
 }

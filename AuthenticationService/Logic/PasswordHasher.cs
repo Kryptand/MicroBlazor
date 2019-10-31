@@ -1,4 +1,5 @@
-﻿using AuthenticationService.Logic.Contracts;
+﻿using Authentication.Models;
+using AuthenticationService.Logic.Contracts;
 using System;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
@@ -86,10 +87,5 @@ namespace AuthenticationService.Logic
         }
     }
 
-    public enum PasswordVerificationResult
-    {
-        Failed,
-        Success,
-        SuccessRehashNeeded,
-    }
+ 
 }

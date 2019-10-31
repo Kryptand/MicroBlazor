@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
+using Authentication.Models;
 using AuthenticationService.DataClasses;
-using AuthenticationService.Models;
 
 namespace AuthenticationService.Logic.Contracts
 {

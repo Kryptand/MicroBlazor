@@ -25,6 +25,8 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\Authentication.DataClasses\Authentication.DataClasses.csproj" />
+    <ProjectReference Include="..\Authentication.Models\Authentication.Models.csproj" />
     <ProjectReference Include="..\Shared.Data\Shared.Data.csproj" />
   </ItemGroup>
 

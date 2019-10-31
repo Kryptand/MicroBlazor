@@ -10,7 +10,25 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.1.0-preview1.19508.20" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.1.0-preview1.19508.20" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.DevServer" Version="3.1.0-preview1.19508.20" PrivateAssets="all" />
-    <PackageReference Include="Reshiru.Blazor.IndexedDB.Framework" Version="1.0.1" />
+    <PackageReference Include="TG.Blazor.IndexedDB" Version="1.2.1-preview" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Authentication.Models\Authentication.Models.csproj" />
+    <ProjectReference Include="..\Shared.ClientsideStorage\Shared.ClientsideStorage.csproj" />
+    <ProjectReference Include="..\Shared.Data\Shared.Data.csproj" />
+    <EmbeddedResource Include="appsettings.json" />
+    <EmbeddedResource Include="appsettings.*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\storage.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\storage.min.js" />
+  </ItemGroup>
+
+
 
 </Project>

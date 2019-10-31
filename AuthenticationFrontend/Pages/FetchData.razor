@@ -1,5 +1,6 @@
 ﻿@page "/fetchdata"
 @inject HttpClient Http
+@inject IAuthenticationService authService
 
 <h1>Weather forecast</h1>
 
@@ -40,6 +41,8 @@ else
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        Console.WriteLine(authService);
+        await authService.WriteTokenAsync(new Authentication.Models.SecurityToken { auth_token="asdasd"});
     }
 
     public class WeatherForecast

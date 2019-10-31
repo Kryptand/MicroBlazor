@@ -1,4 +1,5 @@
-﻿using AuthenticationService.Data.Context;
+﻿using Authentication.Models;
+using AuthenticationService.Data.Context;
 using AuthenticationService.DataClasses;
 using AuthenticationService.Helpers;
 using AuthenticationService.Logic.Contracts;
@@ -35,7 +36,7 @@ namespace AuthenticationService.Logic
         {
             return _passwordHasher.VerifyHashedPassword(userEntity.Password, password);
         }
-        public async Task<Models.SecurityToken> AuthenticateAsync(string username, string password)
+        public async Task<Authentication.Models.SecurityToken> AuthenticateAsync(string username, string password)
         {
             var user = await FindUserByUsernameAsync(username);
             if (user == null)
@@ -61,7 +62,7 @@ namespace AuthenticationService.Logic
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var jwtSecurityToken = tokenHandler.WriteToken(token);
 
-            return new Models.SecurityToken() { auth_token = jwtSecurityToken };
+            return new Authentication.Models.SecurityToken() { auth_token = jwtSecurityToken };
         }
         public async Task<UserEntity> RegisterUserAsync(string username, string password)
         {
