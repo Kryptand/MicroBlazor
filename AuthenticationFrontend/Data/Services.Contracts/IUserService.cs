@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using AuthenticationService.Data.Entities;
-using AuthenticationService.Helpers;
 using AuthenticationService.Models;
 
 namespace AuthenticationService.Services.Contracts

@@ -1,17 +1,6 @@
-﻿using AuthenticationService.Data.Context;
-using AuthenticationService.Data.Entities;
-using AuthenticationService.Helpers;
-using AuthenticationService.Services.Contracts;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System;
 using System.Net.Http;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
-using Blazor.Extensions.Storage;
 using Microsoft.AspNetCore.Components;
 
 namespace AuthenticationFrontend.Services
