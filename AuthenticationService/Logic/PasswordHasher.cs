@@ -1,8 +1,9 @@
-﻿using System;
+﻿using AuthenticationService.Logic.Contracts;
+using System;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
-namespace AuthenticationService.Helpers
+namespace AuthenticationService.Logic
 {
     public sealed class Pbkdf2PasswordHasher : IPasswordHasher
     {

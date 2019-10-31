@@ -1,6 +1,6 @@
 ﻿
-using Shared.Data.Entities.Contracts;
-namespace AuthenticationService.Data.Entities
+using Shared.Data.DataClasses.Contracts;
+namespace AuthenticationService.DataClasses
 {
     public class UserEntity:GuidEntity
     {

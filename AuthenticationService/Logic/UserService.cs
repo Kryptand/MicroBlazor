@@ -1,7 +1,7 @@
 ﻿using AuthenticationService.Data.Context;
-using AuthenticationService.Data.Entities;
+using AuthenticationService.DataClasses;
 using AuthenticationService.Helpers;
-using AuthenticationService.Services.Contracts;
+using AuthenticationService.Logic.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -11,7 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthenticationService.Services
+namespace AuthenticationService.Logic
 {
 
     public class UserService : IUserService
@@ -79,5 +79,7 @@ namespace AuthenticationService.Services
             await _userContext.SaveChangesAsync();
             return addedUser.Entity;
         }
+
+    
     }
 }

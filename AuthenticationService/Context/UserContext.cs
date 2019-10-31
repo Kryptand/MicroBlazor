@@ -1,11 +1,11 @@
-﻿using AuthenticationService.Data.Entities;
-using Microsoft.EntityFrameworkCore;
-using Shared.Data.Entities.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using Shared.Data.DataClasses.Contracts;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using AuthenticationService.DataClasses;
 
 namespace AuthenticationService.Data.Context
 {
@@ -61,28 +61,18 @@ namespace AuthenticationService.Data.Context
                 }
             }
         }
-        private bool isAuthenticated()
-        {
-            return _httpContextAccessor.HttpContext.User.Identity.IsAuthenticated;
-        }
+
         private string GetCurrentUserId()
         {
             var httpContext = _httpContextAccessor.HttpContext;
             if (httpContext != null)
             {
-                try
+                var username = string.Empty;
+                if (httpContext.User.Identity is ClaimsIdentity identity)
                 {
-                    var username = string.Empty;
-                    if (httpContext.User.Identity is ClaimsIdentity identity)
-                    {
-                        username = httpContext.User.Identity.Name;
-                    }
-                    return username;
+                    username = httpContext.User.Identity.Name;
                 }
-                catch (Exception e)
-                {
-                    return "DEFAULT";
-                }
+                return username;
 
             }
             return "DEFAULT";

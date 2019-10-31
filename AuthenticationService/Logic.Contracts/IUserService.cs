@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using AuthenticationService.Data.Entities;
-using AuthenticationService.Helpers;
+using AuthenticationService.DataClasses;
 using AuthenticationService.Models;
 
-namespace AuthenticationService.Services.Contracts
+namespace AuthenticationService.Logic.Contracts
 {
     public interface IUserService
     {

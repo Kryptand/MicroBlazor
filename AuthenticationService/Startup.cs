@@ -1,7 +1,5 @@
 using AuthenticationService.Data.Context;
 using AuthenticationService.Helpers;
-using AuthenticationService.Services;
-using AuthenticationService.Services.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using AuthenticationService.Logic.Contracts;
+using AuthenticationService.Logic;
+using Microsoft.Extensions.Hosting;
 
 namespace Identity.WebApi
 {
@@ -56,7 +57,7 @@ namespace Identity.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

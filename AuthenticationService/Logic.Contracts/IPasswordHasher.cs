@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace AuthenticationService.Helpers
+namespace AuthenticationService.Logic.Contracts
 {
     public interface IPasswordHasher
     {

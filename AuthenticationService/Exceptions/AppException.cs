@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace AuthenticationService.Helpers
+namespace AuthenticationService.Exceptions
 {
     public class AppException : Exception
     {

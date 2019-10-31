@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Shared.Data.Entities.Contracts
+namespace Shared.Data.DataClasses.Contracts
 {
     public interface ITrackable
     {
