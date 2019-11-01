@@ -27,6 +27,17 @@ namespace Identity.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                        builder =>
+                        {
+                            builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                        });
+            });
             services.AddMvc(options => options.EnableEndpointRouting = false);
             var appSettingSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingSection);
@@ -65,6 +76,7 @@ namespace Identity.WebApi
             }
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCors("AllowSpecificOrigin");
             app.UseMvc();
         }
     }

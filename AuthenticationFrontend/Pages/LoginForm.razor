@@ -1,5 +1,50 @@
-﻿<h3>LoginForm</h3>
+﻿@page "/login"
+@inject IAuthenticationService authService
+
+<h3>LoginForm</h3>
+<input type="text"
+       placeholder="User Name"
+       @bind="@Username" />
+        &nbsp;&nbsp;
+<input type="password"
+       placeholder="Password"
+       @bind="@Password" />
+<button class="ml-md-auto btn btn-primary"
+        @onclick="Authenticate">
+    Login
+</button>
+@{
+    if (ShowSuccessMessage == true || ShowErrorMessage == true)
+    {
+        if (ShowErrorMessage)
+        {
+            <div>The given credentials were wrong.</div>
+        }
+        if (ShowSuccessMessage)
+        {
+            <div>Success.</div>
+        }
+    }
+}
 
 @code {
-
+    private string Username { get; set; }
+    private string Password { get; set; }
+    private bool ShowSuccessMessage { get; set; } = false;
+    private bool ShowErrorMessage { get; set; } = false;
+    private async void Authenticate()
+    {
+        var auth = new Login { Username = Username, Password = Password };
+        var passwordVerificationResult = await authService.AuthenticateAsync(auth);
+        if (passwordVerificationResult == PasswordVerificationResult.Success)
+        {
+            ShowSuccessMessage = true;
+            ShowErrorMessage = false;
+            StateHasChanged();
+            return;
+        }
+        ShowErrorMessage = true;
+        ShowSuccessMessage = false;
+        StateHasChanged();
+    }
 }
